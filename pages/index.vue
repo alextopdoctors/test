@@ -1,59 +1,69 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        TOP DOCTORS 2019
-      </h1>
-      <h2 class="subtitle">
-        By Alex Fernandez 
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
+  <div class="container is-fluid">
+      <header-main/>
+      <div class="columns is-medium">
+        <div class="column is-narrow">
+          <div class="box" style="width: 200px;">
+            <p class="title is-5">Narrow column</p>
+            <p class="subtitle">This column is only 200px wide.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box">
+            <p class="title is-5">Flexible column</p>
+            <p class="subtitle">This column will take up the remaining space available.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+      <div class="column">
+          <div class="columns is-11 is-multiline">
+            <div v-for="card in cardItems" :key="card.id" class="column">
+              <card :title="card.title" :image="card.img" :description="card.description"/>
+              <a class="button is-medium is-fullwidth">Medium</a>
+            </div>
+          </div>
+      </div>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import HeaderMain from "~/components/Header.vue";
+import Card from "~/components/Card.vue";
 
 export default {
+  name: "Main",
   components: {
-    Logo
+    HeaderMain,
+    Card
+  },
+  data() {
+    return {
+      cardItems: [
+        {
+          id: 1,
+          title: "PORCHE GT",
+          img: "/img/2017-porsche-panamera-.jpg",
+          description:
+            "Textos simulados: su función como texto de relleno o como herramienta para comparar el efecto visual de diferentes tipos de letraLos textos simulados son aquellos textos que, en ausencia de un texto definitivo, sirven como sustituto de futuros contenidos en la producción de maquetas para publicaciones o sitios web. También son llamados textos dummy, ficticios o de relleno. A parte de ser utilzados dentro del sector de la imprenta y del grafismo, algunos compositores de canciones también utilizan textos simulados al componer melodías, cantando estos textos antes de escribir las letras de la canción. Ya en el siglo XVI, los tipógrafos solían usar textos simulados. "
+        },
+        {
+          id: 2,
+          title: "PANAMERA",
+          description:
+            "Description, alex asdasd asdasd a dasderom fkemfw  Description, alex asdasd asdasd a dasderom fkemfw "
+        },
+        {
+          id: 3,
+          img: "/img/2017-porsche-panamera-.jpg",
+          title: "PORCHE 911",
+          description: "Description, alex asdasd asdasd a dasderom fkemfw"
+        }
+      ]
+    };
   }
-}
+};
 </script>
 
 <style>
-.container
-{
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.title
-{
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-.subtitle
-{
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-.links
-{
-  padding-top: 15px;
-}
 </style>
+
